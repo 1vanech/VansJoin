@@ -1,8 +1,9 @@
-# Сообщение при входе игрока с пермишеном vansjoin.alert
-# Плейсхолдеры:
-# {player}  -> имя игрока
-# {prefix}  -> %luckperms_prefix% (через PlaceholderAPI), если PAPI нет — пусто
-join-message: "&a[VansJoin]&r {prefix}&r {player} вошёл на сервер."
+# Сообщение при входе (UTF-8). Разрешены плейсхолдеры {player} и {prefix}
+# Цветовая схема: &6, &e, &7, &8
+# По умолчанию без префикса:
+# join-message: "&6&lVansJoin &8>> &6{player} &eзашёл на сервер!"
+# С поддержкой {prefix} перед {player}:
+join-message: "&6&lVansJoin &8>> {prefix}&6{player} &eзашёл на сервер!"
 # Сообщение при входе игрока с пермишеном vansjoin.alert
 # Плейсхолдеры:
 # {player}  -> имя игрока

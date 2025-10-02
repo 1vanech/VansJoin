@@ -1,14 +1,25 @@
 name: VansJoin
 main: me.ivanech.vansjoin.VansJoin
-version: 1.0.0
+version: 1.0.0-beta
 api-version: 1.16
 softdepend:
   - PlaceholderAPI
 commands:
   vj:
-    description: VansJoin info
+    description: VansJoin base command
     aliases: [vansjoin]
-    usage: /<command>
+    usage: /<command> [help|reload]
+    permission: vansjoin.command
+permissions:
+  vansjoin.command:
+    description: Access to VansJoin commands
+    default: true
+  vansjoin.reload:
+    description: Reload VansJoin configuration
+    default: op
+  vansjoin.alert:
+    description: Receive VansJoin join alert
+    default: false
 name: VansJoin
 main: me.ivanech.vansjoin.VansJoin
 version: 1.0.0
