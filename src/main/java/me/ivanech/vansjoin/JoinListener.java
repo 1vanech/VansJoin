@@ -17,41 +17,47 @@ public final class JoinListener implements Listener {
         final Player player = event.getPlayer();
 
         Bukkit.getScheduler().runTaskLater(VansJoin.getInstance(), () -> {
-            if (player == null || !player.isOnline()) {
-                return;
-            }
-
-            if (!player.hasPermission("vansjoin.alert")) {
-                return;
-            }
-
-            String template = VansJoin.getInstance().getConfig().getString("join-message");
-            if (template == null || template.trim().isEmpty()) {
-                template = "&6&lVansJoin &8>> &6{player} &eзашёл на сервер!";
-            }
-
-            String prefix = "";
-            Plugin papi = Bukkit.getPluginManager().getPlugin("PlaceholderAPI");
-            if (papi != null && papi.isEnabled()) {
-                try {
-                    String resolved = me.clip.placeholderapi.PlaceholderAPI.setPlaceholders(player, "%luckperms_prefix%");
-                    if (resolved != null) {
-                        prefix = resolved;
-                    }
-                } catch (Throwable ignored) {
-                    prefix = "";
+            try {
+                if (player == null || !player.isOnline()) {
+                    return;
                 }
-            }
 
-            String message = template
-                    .replace("{player}", player.getName())
-                    .replace("{prefix}", prefix);
+                if (!player.hasPermission("vansjoin.alert")) {
+                    return;
+                }
 
-            message = ChatColor.translateAlternateColorCodes('&', message);
-            Bukkit.getServer().broadcastMessage(message);
+                String template = VansJoin.getInstance().getConfig().getString("join-message");
+                if (template == null || template.trim().isEmpty()) {
+                    template = "&6&lVansJoin &8>> &6{player} &eзашёл на сервер!";
+                }
 
-            for (Player online : Bukkit.getOnlinePlayers()) {
-                online.playSound(online.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 1.0f, 1.0f);
+                String prefix = "";
+                Plugin papi = Bukkit.getPluginManager().getPlugin("PlaceholderAPI");
+                if (papi != null && papi.isEnabled()) {
+                    try {
+                        String resolved = me.clip.placeholderapi.PlaceholderAPI.setPlaceholders(player, "%luckperms_prefix%");
+                        if (resolved != null && !resolved.contains("%")) {
+                            prefix = resolved;
+                        }
+                    } catch (Throwable ignored) {
+                        prefix = "";
+                    }
+                }
+
+                String message = template
+                        .replace("{player}", player.getName())
+                        .replace("{prefix}", prefix);
+
+                message = ChatColor.translateAlternateColorCodes('&', message);
+                Bukkit.getServer().broadcastMessage(message);
+
+                for (Player online : Bukkit.getOnlinePlayers()) {
+                    if (online != null && online.isOnline()) {
+                        online.playSound(online.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 1.0f, 1.0f);
+                    }
+                }
+            } catch (Throwable ignored) {
+                // graceful fallback: ничего не делаем, чтобы не уронить тик
             }
         }, 2L);
     }
