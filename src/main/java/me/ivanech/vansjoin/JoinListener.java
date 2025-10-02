@@ -49,7 +49,9 @@ public final class JoinListener implements Listener {
                         .replace("{prefix}", prefix);
 
                 message = ChatColor.translateAlternateColorCodes('&', message);
-                Bukkit.getServer().broadcastMessage(message);
+            Bukkit.getServer().broadcastMessage(message);
+            Bukkit.getConsoleSender().sendMessage(message);
+            player.sendMessage(message);
 
                 for (Player online : Bukkit.getOnlinePlayers()) {
                     if (online != null && online.isOnline()) {
