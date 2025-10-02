@@ -13,13 +13,17 @@ public final class JoinListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-
-        if (!player.hasPermission("vansjoin.alert")) {
-            return;
-        }
+        final Player player = event.getPlayer();
 
         Bukkit.getScheduler().runTaskLater(VansJoin.getInstance(), () -> {
+            if (player == null || !player.isOnline()) {
+                return;
+            }
+
+            if (!player.hasPermission("vansjoin.alert")) {
+                return;
+            }
+
             String template = VansJoin.getInstance().getConfig().getString(
                     "join-message",
                     "&6&lVansJoin &8>> &6{player} &eзашёл на сервер!"
