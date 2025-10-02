@@ -5,13 +5,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
 
 public final class JoinListener implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onJoin(PlayerJoinEvent event) {
         final Player player = event.getPlayer();
 
@@ -24,10 +25,10 @@ public final class JoinListener implements Listener {
                 return;
             }
 
-            String template = VansJoin.getInstance().getConfig().getString(
-                    "join-message",
-                    "&6&lVansJoin &8>> &6{player} &eзашёл на сервер!"
-            );
+            String template = VansJoin.getInstance().getConfig().getString("join-message");
+            if (template == null || template.trim().isEmpty()) {
+                template = "&6&lVansJoin &8>> &6{player} &eзашёл на сервер!";
+            }
 
             String prefix = "";
             Plugin papi = Bukkit.getPluginManager().getPlugin("PlaceholderAPI");
