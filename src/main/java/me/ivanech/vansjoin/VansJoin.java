@@ -18,6 +18,7 @@ public final class VansJoin extends JavaPlugin implements CommandExecutor {
 
     @Override
     public void onEnable() {
+        instance = this;
         saveDefaultConfig();
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
         if (getCommand("vj") != null) {
