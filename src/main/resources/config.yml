@@ -1,0 +1,11 @@
+# Сообщение при входе игрока с пермишеном vansjoin.alert
+# Плейсхолдеры:
+# {player}  -> имя игрока
+# {prefix}  -> %luckperms_prefix% (через PlaceholderAPI), если PAPI нет — пусто
+join-message: "&a[VansJoin]&r {prefix}&r {player} вошёл на сервер."
+# Сообщение при входе игрока с пермишеном vansjoin.alert
+# Плейсхолдеры:
+# {player}  -> имя игрока
+# {prefix}  -> %luckperms_prefix% (через PlaceholderAPI), если PAPI нет — пусто
+join-message: "&a[VansJoin]&r {prefix}&r {player} вошёл на сервер."
+

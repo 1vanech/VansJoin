@@ -1,0 +1,23 @@
+name: VansJoin
+main: me.ivanech.vansjoin.VansJoin
+version: 1.0.0
+api-version: 1.16
+softdepend:
+  - PlaceholderAPI
+commands:
+  vj:
+    description: VansJoin info
+    aliases: [vansjoin]
+    usage: /<command>
+name: VansJoin
+main: me.ivanech.vansjoin.VansJoin
+version: 1.0.0
+api-version: 1.16
+softdepend:
+  - PlaceholderAPI
+commands:
+  vj:
+    description: VansJoin info
+    aliases: [vansjoin]
+    usage: /<command>
+
